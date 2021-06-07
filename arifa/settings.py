@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'users',
     'crispy_forms',
     'posts',
+    'comment',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +137,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.CustomUser'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
