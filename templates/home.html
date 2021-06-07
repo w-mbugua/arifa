@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+  
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+                <h3>What's on your mind?</h3>
+                <div>
+                    <form class="post-form" action="{% url 'add_post' %}" method='POST'>
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button class="btn btn-primary post-btn" type="submit">Post</button>
+                        <button class="btn btn-secondary upload-btn" type="button">Upload image</button>
+                    </form>
+                </div>
+                <hr class="content-border">
+                <div id="posts-box">
+                   
+                               <hr>
+                              
+                            </div>
+                    
+                </div>
+            </div>
+        </div>
+   
+    </div>
+{% endblock %}
