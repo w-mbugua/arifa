@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load cloudinary %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+
+            <div>
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                      <div class="col-md-4">
+                        {% if profile.photo %}
+                             {% cloudinary profile.photo id="avi" %}
+                        {% else %}
+                        {% endif %}
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title"> {{profile}}</h5>
+                          <p class="card-text">{{ profile.bio }}</p>
+                          <p class="card-text"><small>Joined: {{profile.created|date:"M Y"}}</small></p>
+                        
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Occupation: {{profile.user.occupation}}</li>
+                            <li class="list-group-item">Location: {{profile.neighborhood}}, {{profile.neighborhood.location}}</li>
+                            <li class="list-group-item">Contact: {{profile.user.email}}</li>
+                            <li class="list-group-item">
+                                <button class="btn btn-danger"><a style="text-decoration: none;" href="{% url 'profile_update' profile.pk %}">Edit Profile</a></button>
+                                <button class="btn btn-outline-success"><a style="text-decoration: none;"  href="{% url 'profile_update' profile.pk %}">Change Neighborhood</a></button>
+                            </li>
+                          </ul>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+
+
+            <!-- <div class="col-md-4">
+               
+            </div>
+            <div class="col-md-6">
+                {{profile}}
+                <p>{{profile.bio}}</p>
+                <button class="btn btn-danger"><a style="text-decoration: none;" href="{% url 'profile_update' profile.pk %}">Edit Profile</a></button>
+            </div> -->
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+    
+{% block content %}
+    <div class="jumbotron p-4">
+    <div class="container">
+    <h1 class="jumbotron-heading">Registration - Step 2</h1>
+    </div>
+    </div>
+    <div class="container">
+    <div class="row">
+        <form method="post" action="." enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-outline-success"><a href="{%url 'add_neighborhood' %}">Add a neighborhood</a></button>
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
+</div>
+{% endblock %}
