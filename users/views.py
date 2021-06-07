@@ -23,7 +23,7 @@ class SignUpView(CreateView):
 
 
 def home(request):
-   return HttpResponse('This is home!')
+   return render(request, 'home.html')
 
 
 
