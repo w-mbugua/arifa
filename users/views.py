@@ -10,6 +10,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 
+from posts.forms import PostCreateForm
+from posts.models import Post
+
+
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
@@ -23,7 +27,13 @@ class SignUpView(CreateView):
 
 
 def home(request):
-   return render(request, 'home.html')
+    form = PostCreateForm()
+    user = request.user 
+    posts = Post.objects.all().order_by('-pk')
+       
+    context = {"form": form, "posts": posts}
+    return render(request, 'home.html', context)
+
 
 
 

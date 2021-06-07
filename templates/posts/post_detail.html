@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load comment_tags %}
+
+{% block content %}
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                      {{post.author|title}} &middot;
+                      <small>{{ post.created|timesince}} ago</small>
+                    </div>
+                    <div class="card-body">
+                      <blockquote class="blockquote mb-0">
+                        <p>{{ post.body }}</p>
+                       <hr>
+                            {% if user == post.author %}
+                               {% include 'actions.html' %}
+                            {% endif %}
+                      </blockquote>
+                    </div>
+                  </div>
+                  {% render_comments post request %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
