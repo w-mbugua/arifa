@@ -24,10 +24,18 @@
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Occupation: {{profile.user.occupation}}</li>
-                            <li class="list-group-item">Contact: {{profile.user.email}}</li>
+                            <li class="list-group-item">Email: {{profile.user.email}}</li>
+                            <li class="list-group-item">DMs: <a style="color: blueviolet;" href="{% url 'dms' profile.pk %}">Messages</a></li>
+                            {% if user != profile.user %}
+                              <li class="list-group-item">
+                                <button class="btn btn-outline-danger">
+                                  <a href="{% url 'ask' profile.user.id %}">Talk to me</a>
+                                </button>
+                            </li>
+                            {% endif %}
                            {% if user == profile.user %}
                             <li class="list-group-item">
-                              <button class="btn btn-danger"><a style="text-decoration: none;" href="{% url 'profile_update' profile.pk %}">Edit Profile</a></button>
+                              <button class="btn btn-outline-secondary"><a style="text-decoration: none;" href="{% url 'profile_update' profile.pk %}">Edit Profile</a></button>
                             </li>
                            {% endif %}
                           </ul>

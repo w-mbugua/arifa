@@ -4,7 +4,6 @@ from django.urls import reverse_lazy
 from .forms import CustomUserCreationForm
 from django.http import JsonResponse
 
-from .email import send_welcome_email
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin

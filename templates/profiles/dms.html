@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+          
+            <div class="col-md-7">
+                <h3 class="text-center">You have {{profile.get_messages.count }} messages</h3>
+                    {% for message in messages %}
+                        <div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    {{message.f_rom.name}}
+                                </div>
+                                <div class="col-md-7">
+                                    <p>{{forloop.counter}} &middot;
+                                        <a href="{% url 'message' message.id %}">{{message.subject}}</a>
+                                    </p>
+                                </div>
+                                <div class="col-md-1">
+                                    Reply
+                                </div>
+                                <div class="col-md-2">
+                                    call
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    {% empty %}
+                    <p>You have no new messages</p>
+                   
+                    {% endfor %}
+                   
+                  
+            </div>
+        </div>
+    </div>
+{% endblock %}

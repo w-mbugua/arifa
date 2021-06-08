@@ -1,14 +1,18 @@
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings
+from profiles.models import Profile
 
-def send_welcome_email(name, receiver):
-    subject = 'Welcome to Jirani Watch'
-    sender = settings.EMAIL_HOST_USER
+def send_client_email(subject, sender, response, name, receiver):
+    # Creating message subject and sender
+    subject = subject
+    sender = sender
+    body = response
 
-    text_content = render_to_string('email/jiraniemail.txt', {"name": name})
-    html_content = render_to_string('email/jiraniemail.html', {"name": name})
+    #passing in the context vairables
+    text_content = render_to_string('email/clientemail.txt',{"name": name, "body": body})
+    html_content = render_to_string('email/clientemail.html',{"name": name, "body": body })
 
-    msg = EmailMultiAlternatives(subject, text_content, sender, [receiver])
-    msg.attach_alternative(html_content, 'text/html')
+    msg = EmailMultiAlternatives(subject,text_content,sender,[receiver])
+    msg.attach_alternative(html_content,'text/html')
     msg.send()
