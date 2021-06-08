@@ -1,26 +1,60 @@
 {% extends 'base.html' %}
-  
+{% load cloudinary %} 
 
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-6">
-                <h3>What's on your mind?</h3>
-                <div>
-                    <form class="post-form" action="#" method='POST'>
+                <!-- <h3>What's on your mind?</h3> -->
+                <!-- <div>
+                    <form class="post-form" action="{% url 'add_post' %}" method='POST'>
                         {% csrf_token %}
                         {{form.as_p}}
                         <button class="btn btn-primary post-btn" type="submit">Post</button>
-                        <button class="btn btn-secondary upload-btn" type="button">Upload image</button>
                     </form>
-                </div>
+                </div> -->
+           
+                    <a style="text-decoration: none;" href="{% url 'add_post' %}" >Write a Post</a>
+             
                 <hr class="content-border">
                 <div id="posts-box">
-                   
-                               <hr>
-                              
+                    {% if posts %}
+                        {% for post in posts %}
+                           <div class="post-item">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    {% cloudinary post.author.profile.photo class="rounded-circle post-avi" %}
+
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="">
+                                      <strong>{{post.author|title}} </strong>&middot;
+                                      <small>{{ post.created|timesince}} ago</small>
+                                     
+                                    </div>
+                                    <div class="post-body">
+                                        {{ post.body }}
+                                        <br>
+                                        <a href="{% url 'post_details' post.id %}">Comment</a>
+                                        {% if user == post.author %}
+                                            {% include 'actions.html' %}
+                                        {% endif %}
+                                   
+                                      
+                                    </div>
+                                </div>
                             </div>
+                           </div>
+                           <hr>
+                        {% endfor %}
+                        {% else %}
+                        <p>The are no posts yet. Be the first!</p>
+                    {% endif %}
+                   
+                <hr>
+                              
+                </div>
                     
                 </div>
             </div>

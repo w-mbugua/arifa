@@ -22,26 +22,21 @@
               </div>
             
              <ul  class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" href="#"></a>
-              </li>
-             {% if user.is_authenticated %}
+             
             
               <li class="nav-item">
-               <a class="nav-link" href="#">Profile</a>
+               <a class="nav-link" href="#">Real Estate</a>
               </li> 
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'logout'%}">Logout</a>
+                  <a class="nav-link" href="{% url 'logout'%}">Stocks</a>
                 </li>
-             {% else %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'login'%}">Login</a>
+                  <a class="nav-link" href="{% url 'login'%}">Equities</a>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signup'%}">Register</a>
+                    <a class="nav-link" href="{% url 'signup'%}">Money Market</a>
                   </li>
-            {% endif %}
               </ul>
             </div>
           </nav>
