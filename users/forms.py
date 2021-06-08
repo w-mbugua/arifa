@@ -14,5 +14,9 @@ class CustomUserChangeForm(UserChangeForm):
         model = CustomUser
         fields = UserChangeForm.Meta.fields
 
+class NewsLetterForm(forms.Form):
+    name = forms.CharField(max_length=30)
+    email = forms.EmailField()
+
 
 

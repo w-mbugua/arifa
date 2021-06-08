@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, View
 from django.urls import reverse_lazy
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, NewsLetterForm
 from django.http import JsonResponse
 
 
@@ -33,7 +33,9 @@ def home(request):
     context = {"form": form, "posts": posts}
     return render(request, 'home.html', context)
 
-
+def landing_page(request):
+    form = NewsLetterForm()
+    return render(request, 'landing.html', {"form": form})
 
 
 
