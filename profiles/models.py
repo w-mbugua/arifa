@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from cloudinary.models import CloudinaryField
+from posts.models import Post
 
 
 class Profile(models.Model):
@@ -15,3 +16,7 @@ class Profile(models.Model):
     
     def get_absolute_url(self):
         return reverse('profile', args=[str(self.pk)])
+    
+    def get_posts(self):
+        posts = Post.objects.filter(author=self.user)
+        return posts 

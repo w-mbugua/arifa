@@ -22,7 +22,7 @@ class SignUpView(CreateView):
     def form_valid(self, form):
         name = form.cleaned_data['username']
         email = form.cleaned_data['email']
-        send_welcome_email(name, email)
+        # send_welcome_email(name, email)
         return super().form_valid(form)
 
 

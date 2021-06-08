@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-1"></div>
 
-            <div>
+            <div class="col-md-8">
                 <div class="card mb-3">
                     <div class="row no-gutters">
                       <div class="col-md-4">
@@ -25,24 +25,54 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Occupation: {{profile.user.occupation}}</li>
                             <li class="list-group-item">Contact: {{profile.user.email}}</li>
+                           {% if user == profile.user %}
                             <li class="list-group-item">
-                                <button class="btn btn-danger"><a style="text-decoration: none;" href="{% url 'profile_update' profile.pk %}">Edit Profile</a></button>
+                              <button class="btn btn-danger"><a style="text-decoration: none;" href="{% url 'profile_update' profile.pk %}">Edit Profile</a></button>
                             </li>
+                           {% endif %}
                           </ul>
                       </div>
                     </div>
                   </div>
             </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10">
+            <h3 class="text-center mb-3">Posts({{profile.get_posts.count}})</h3>
+            <hr>
+              {% for post in profile.get_posts %}
+                <div>
+                  <div class="post-item">
+                    <div class="row">
+                        <div class="col-md-2">
+                            {% cloudinary post.author.profile.photo class="rounded-circle post-avi" %}
 
-
-            <!-- <div class="col-md-4">
-               
-            </div>
-            <div class="col-md-6">
-                {{profile}}
-                <p>{{profile.bio}}</p>
-                <button class="btn btn-danger"><a style="text-decoration: none;" href="{% url 'profile_update' profile.pk %}">Edit Profile</a></button>
-            </div> -->
+                        </div>
+                        <div class="col-md-10">
+                            <div class="">
+                            <a href="{% url 'profile' post.author.id %}"><strong>{{post.author|title}} </strong></a>&middot;
+                              <small>{{ post.created|timesince}} ago</small>
+                              
+                            </div>
+                            <div class="post-body">
+                                {{ post.body }}
+                                <br>
+                                <a href="{% url 'post_details' post.id %}">Comment</a>
+                                {% if user == post.author %}
+                                    {% include 'actions.html' %}
+                                {% endif %}
+                            
+                              
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <hr>
+                </div>
+              {% empty %}
+              <p>{{profile.user}} has no posts</p>
+              {% endfor %}
+          </div>
         </div>
     </div>
 {% endblock %}
