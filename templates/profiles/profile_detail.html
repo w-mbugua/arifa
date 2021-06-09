@@ -31,7 +31,7 @@
                             {% if user != profile.user %}
                               <li class="list-group-item">
                                 <button class="btn btn-outline-danger">
-                                  <a href="{% url 'ask' profile.user.id %}">Talk to me</a>
+                                  <a href="{% url 'ask' profile.user.username %}">Talk to me</a>
                                 </button>
                             </li>
                             <li>

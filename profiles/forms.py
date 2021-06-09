@@ -5,7 +5,7 @@ from .models import Profile, Message
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ('expertise', 'user', 'slug')
+        exclude = ('expertise', 'user', 'slug', 'following',)
         widgets = {
             'bio': forms.Textarea(attrs={'rows': '3'})
         }
@@ -13,7 +13,8 @@ class UserProfileForm(forms.ModelForm):
 class Registration2Form(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('expertise', 'experience', 'employer')
+        exclude = ('following', )
+        fields = ('expertise', 'experience', 'employer',)
 
 class MessageForm(forms.ModelForm):
     class Meta:

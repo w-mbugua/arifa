@@ -19,8 +19,8 @@ urlpatterns = [
     path('<slug:slug>/update/', ProfileUpdateView.as_view(), name='profile_update'),
     path('view_profiles/', ProfileListView.as_view(), name='profiles_list'),
     path('professional/details/', CompleteProfileView.as_view(), name='registration2'),
-    path('<int:pk>/ask_expert/', ask_expert, name='ask'),
-    path('<int:pk>/messages/', retrieve_messages, name='dms'),
+    path('ask_expert/<slug:slug>/', ask_expert, name='ask'),
+    path('<slug:slug>/messages/', retrieve_messages, name='dms'),
     path('message/<int:msg_id>/', MessageView, name='message'),
     path('<int:msg_id>/send_reply/', reply_msg, name='reply_msg'),
     

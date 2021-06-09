@@ -6,7 +6,7 @@ from posts.models import Post
 class PostCreateForm(forms.ModelForm):
     class Meta:
         model = Post
-        exclude = ('author',)
+        exclude = ('author', 'likes')
         widgets = {
             'body': forms.Textarea(attrs={'rows': '3'})
         }

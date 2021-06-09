@@ -9,6 +9,7 @@ from users.email import send_client_email
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
+from users.decorators import expert_required
 
 
 from django.http import JsonResponse
@@ -24,7 +25,6 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = Profile
     fields = ('bio', 'photo', 'market')
-    
     template_name = 'profiles/profile_edit.html'
 
 class ProfileListView(LoginRequiredMixin, ListView):
@@ -43,6 +43,7 @@ class ProfileCreateView(LoginRequiredMixin, CreateView):
         profile.save()
         return super().form_valid(form)
 
+@expert_required
 def create_profile(request):
     form = UserProfileForm()
     if request.method == 'POST':
@@ -62,9 +63,9 @@ class CompleteProfileView(CreateView):
     template_name = 'profiles/registration2.html'
 
 
-def ask_expert(request, pk):
+def ask_expert(request, slug):
     form = MessageForm()
-    profile = Profile.objects.get(pk=pk)
+    profile = Profile.objects.get(slug=slug)
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
@@ -81,6 +82,7 @@ def ask_expert(request, pk):
 
     return render(request, 'profiles/ask.html', {"form": form})
 
+# for both or just the expert?
 def retrieve_messages(request, pk):
     profile = Profile.objects.get(pk=pk)
     messages = profile.get_messages()
@@ -92,6 +94,7 @@ def MessageView(request, msg_id):
     message = Message.objects.get(pk=msg_id)
     return render(request, 'messages/message_details.html', {"message": message})
 
+# for both?
 def reply_msg(request, msg_id):
     form = ReplyForm()
     message = Message.objects.get(id=msg_id)
