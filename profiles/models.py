@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from cloudinary.models import CloudinaryField
 from posts.models import Post
+from django.template.defaultfilters import slugify
 
 EXPERTISE_CHOICES = (('Equities', 'Equities'), ('Money Market', 'Money Market'), ('Real Estate', 'Real Estate'), ('Crypto', 'Crypto'))
 class Profile(models.Model):
@@ -10,8 +11,15 @@ class Profile(models.Model):
     bio = models.TextField()
     photo = CloudinaryField('image')
     created = models.DateTimeField(auto_now_add=True)
-    is_expert = models.BooleanField(default=False)
     expertise = models.CharField(choices=EXPERTISE_CHOICES, max_length=12)
+    experience = models.IntegerField()
+    employer = models.CharField(max_length=50, null=True, blank=True)
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.user)
+        super(Profile, self).save(*args, **kwargs)
+
 
     def __str__(self):
         return self.user.username

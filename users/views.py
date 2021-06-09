@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import CreateView, View
 from django.urls import reverse_lazy
 from .forms import CustomUserCreationForm, NewsLetterForm
+from profiles.forms import Registration2Form
 from django.http import JsonResponse
 
 
@@ -24,7 +25,7 @@ class SignUpView(CreateView):
         # send_welcome_email(name, email)
         return super().form_valid(form)
 
-
+@login_required
 def home(request):
     form = PostCreateForm()
     user = request.user 

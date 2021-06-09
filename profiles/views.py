@@ -1,8 +1,9 @@
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views.generic import DetailView, UpdateView, ListView, CreateView
 from .models import Profile, Message, Client
-from .forms import UserProfileForm, MessageForm, ReplyForm
+from .forms import UserProfileForm, MessageForm, ReplyForm, Registration2Form
 from django.contrib.auth.mixins import LoginRequiredMixin
 from users.email import send_client_email
 from django.contrib.auth import get_user_model
@@ -32,6 +33,12 @@ class ProfileCreateView(LoginRequiredMixin, CreateView):
         profile.user = self.request.user
         profile.save()
         return super().form_valid(form)
+
+class CompleteProfileView(CreateView):
+    form_class = Registration2Form
+    model = Profile
+    template_name = 'profiles/registrarion2.html'
+
 
 def ask_expert(request, pk):
     form = MessageForm()

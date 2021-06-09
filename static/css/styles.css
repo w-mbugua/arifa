@@ -124,8 +124,11 @@ li a {
 }
 .starter img {
   
-  width: 100vw;
-  height: 90vh;
+  width: 50%;
+  object-fit: contain;
+}
+.starter p{
+  margin-top: 5rem;
 }
 .reviews {
   display: flex;
@@ -158,4 +161,7 @@ footer{
   margin-top: 30px;
   text-align: center;
 
+}
+.nav-link:hover{
+  color: #FFE74C;
 }

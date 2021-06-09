@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView, CreateView
 from django.views.generic.edit import UpdateView, DeleteView
@@ -22,6 +23,7 @@ class PostDetailView(LoginRequiredMixin, DetailView):
     template_name = 'posts/post_detail.html'
 
 
+@login_required
 def create_post(request):
     form = PostCreateForm()
     if request.method == 'POST':

@@ -22,7 +22,30 @@
     </header>
 
     <div class="starter">
-        <img src="{% static 'images/image1.jpg' %}" alt="">
+       <div class="row">
+           <div class="col-md-6">
+              <p> Are you looking for an advisor?
+            </p>
+            <p>
+                <a href="">Login</a>
+            </p>
+           </div>
+           <div class="col-md-6">
+            <img src="{% static 'images/inv.png' %}" alt="">
+           </div>
+       </div>
+       <div class="row">
+           
+           <div class="col-md-6">
+            <img src="{% static 'images/cons.png' %}" alt="">
+           </div>
+           <div class="col-md-6">
+            <p>Are you an expert in the investment industry?</p>
+            <p>
+                <a href="{% url 'signup' %}">Register</a>
+            </p>
+        </div>
+       </div>
     </div>
 
    <div class="text-center mid-par">
