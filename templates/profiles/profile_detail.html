@@ -34,6 +34,21 @@
                                   <a href="{% url 'ask' profile.user.id %}">Talk to me</a>
                                 </button>
                             </li>
+                            <li>
+                              {% with total_followers=profile.followers.count %}
+                              <span class="count">
+                                 <span class="total">{{ total_followers }}</span> follower{{ total_followers|pluralize }}
+                              </span>
+                              <br>
+                              <a href="#" data-id="{{ profile.user.id }}" data-action="{% if user in profile.followers.all %}un{% endif %}follow" class="followbutton">
+                              {% if user not in profile.followers.all %}
+                                Follow
+                              {% else %}
+                                Unfollow
+                              {% endif %}
+                              </a>
+                              {% endwith %}
+                            </li>
                             {% endif %}
                            {% if user == profile.user %}
                             <li class="list-group-item">

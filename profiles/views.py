@@ -10,6 +10,13 @@ from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 
+
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from .models import Contact
+from django.views.decorators.csrf import csrf_exempt
+
+
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
     template_name = 'profiles/profile_detail.html'
@@ -101,4 +108,25 @@ def reply_msg(request, msg_id):
             return redirect('message', message.id)
     return render(request, 'email/reply.html', {"form": form, "message": message})
 
+
+@require_POST
+@csrf_exempt
+def user_follow(request):
+    user_id = request.POST.get('id')
+    action = request.POST.get('action')
+    print("USERID - ACTION",user_id, action)
+    if user_id and action:
+        try:
+            user = Profile.objects.get(user_id=user_id)
+            user_f = Profile.objects.get(user=request.user)
+            print("USER_T - USER_F",user,user_f)
+            if action == 'follow':
+                Contact.objects.get_or_create(user_from=user_f, user_to=user)
+                print("FOLLOWERS",user.followers.all())
+            else:
+                Contact.objects.filter(user_from=user_f, user_to=user).delete()
+            return JsonResponse({"status": "ok"})
+        except get_user_model().DoesNotExist:
+            return JsonResponse({"status": "error"})
+    return JsonResponse({"status": "error"})
 

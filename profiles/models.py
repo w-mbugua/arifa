@@ -17,6 +17,7 @@ class Profile(models.Model):
     employer = models.CharField(max_length=50, null=True, blank=True)
     slug = models.SlugField(unique=True)
     market = models.ForeignKey(Market, on_delete=models.CASCADE, related_name='experts')
+    following = models.ManyToManyField('self', through='Contact', related_name='followers', symmetrical=False)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.user)
@@ -36,6 +37,17 @@ class Profile(models.Model):
     def get_messages(self):
         return self.messages.all()
 
+
+class Contact(models.Model):
+        user_from = models.ForeignKey(Profile, related_name='rel_from_set', on_delete=models.CASCADE)
+        user_to = models.ForeignKey(Profile, related_name='rel_to_set', on_delete=models.CASCADE)
+        created = models.DateTimeField(auto_now_add=True)
+        
+        class Meta:
+            ordering = ('-created',)
+        def __str__(self):
+            return f'{self.user_from} follows {self.user_to}'
+
 class Client(models.Model):
     name = models.CharField(max_length=30)
     email = models.EmailField()
@@ -54,4 +66,7 @@ class Message(models.Model):
 
     def __str__(self):
         return f"to {self.to} from {self.f_rom.name}"
+
+
+
 
