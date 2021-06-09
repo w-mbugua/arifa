@@ -7,6 +7,9 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import PostCreateForm
 from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
@@ -39,3 +42,25 @@ def create_post(request):
                 # data.append(item)
                 return redirect('home')
     return render(request, 'posts/addpost.html', {"form": form})
+
+@require_POST
+@csrf_exempt
+def post_like(request):
+    post_id = request.POST.get('id')
+    action = request.POST.get('action')
+    print('nonsemse') 
+    if post_id and action:
+        print("LIKE ID",post_id, action)
+        try:
+            post = Post.objects.get(id=post_id)
+            print('POST',post)
+            if action == 'like':
+                print('yes!!')
+                post.likes.add(request.user)
+                print('LIKES', post.likes.all())
+            else:
+                post.likes.remove(request.user)
+                return JsonResponse({"status": "ok"})
+        except:
+            pass
+    return JsonResponse({"status": "error"})

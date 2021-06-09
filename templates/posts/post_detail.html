@@ -20,7 +20,24 @@
                          
                         </div>
                         <div class="post-body">
-                            {{ post.body|truncatewords:100 }}
+                            {{ post.body }}
+                            {% with total_likes=post.likes.count likes=post.likes.all %}
+                                <div class="post-info">
+                                    <span class="count">
+                                        {{total_likes}} like{{total_likes|pluralize }}                                      
+                                    </span>
+                                    <a href="#" data-id="{{post.id}}" data-action="{% if user in likes %}un{% endif %}like" class="likebutton">
+                                        {% if user not in likes %}
+                                        Like
+                                        {% else %}
+                                        Unlike
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <div class="post-likes">
+                                    
+                                </div>
+                            {% endwith %}
                             <br>
                           
                             {% if user == post.author %}

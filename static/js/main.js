@@ -25,5 +25,29 @@ $(document).ready(function(){
       }
       )
     })
+
+    $('a.likebutton').click(function(e){
+      e.preventDefault();
+      console.log('we likey!')
+      $.post('/posts/like/',{
+        id: $(this).data('id'),
+        action: $(this).data('action')
+      },
+      function(data){
+        console.log(data)
+        if(data['status'] == 'ok'){
+          var previous_action = $('a.likebutton').data('action');
+
+          $('a.likebutton').data('action', previous_action == 'like' ? 'unlike' : 'like');
+
+          $('a.likebutton').text(previous_action == 'like' ? 'Unlike' : 'Like');
+
+          var prev_likes = parseInt($('span.count.total').text());
+          $('span.count.total').text(previous_action == 'like' ? prev_likes + 1 : prev_likes - 1);
+
+        }
+      }
+      )
+    })
     
 })

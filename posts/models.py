@@ -11,6 +11,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     comments = GenericRelation(Comment)
+    likes = models.ManyToManyField(get_user_model(), related_name='posts_liked', blank=True)
 
     def get_location(self):
         return self.author.profile.neighborhood
