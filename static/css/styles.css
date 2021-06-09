@@ -165,3 +165,6 @@ footer{
 .nav-link:hover{
   color: #FFE74C;
 }
+.row-p {
+  border-bottom: 1px solid black;
+}

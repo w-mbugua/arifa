@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'comment',
     'cloudinary',
     'profiles',
+    'markets',
 ]
 
 MIDDLEWARE = [

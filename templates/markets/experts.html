@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load cloudinary %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-9">
+                <h1>Welcome To {{market.name}}</h1>
+                <div class="experts-box">
+                    {% for expert in experts %}
+                        <div class="row row-p">
+                            <div class="col-md-2">
+                                {% cloudinary expert.photo class="rounded-circle post-avi" %}
+                            </div>
+                            <div class="col-md-8">
+                                {{expert.user.username}}
+                                <br>
+                                {{expert.bio}}
+                            </div>
+                            <div class="col-md-2">
+                                    <button style="margin-top: 1rem;" class="btn btn-primary">
+                                        <a style="text-decoration: none; color: white;" href="{% url 'profile' expert.user.username %}">See Profile</a>
+                                    </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -25,17 +25,17 @@
              
             
               <li class="nav-item">
-               <a class="nav-link" href="#">Real Estate</a>
+               <a class="nav-link" href="{% url 'market_experts' 'real-estate' %}">Real Estate</a>
               </li> 
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'logout'%}">Crypto</a>
+                  <a class="nav-link" href="{% url 'market_experts' 'crypto' %}">Crypto</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'login'%}">Equities</a>
+                  <a class="nav-link" href="{% url 'market_experts' 'equities' %}">Equities</a>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'signup'%}">Money Market</a>
+                    <a class="nav-link" href="{% url 'market_experts' 'money-markets' %}">Money Market</a>
                   </li>
               </ul>
             </div>

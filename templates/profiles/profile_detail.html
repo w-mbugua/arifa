@@ -7,6 +7,7 @@
             <div class="col-md-1"></div>
 
             <div class="col-md-8">
+              {% if profile %}
                 <div class="card mb-3">
                     <div class="row no-gutters">
                       <div class="col-md-4">
@@ -23,7 +24,7 @@
                         
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Field: {{profile.expertise}}</li>
+                            <li class="list-group-item">Field: {{profile.market}}</li>
                             <li class="list-group-item">Experience: {{profile.experience}} years</li>
                             <li class="list-group-item">Email: {{profile.user.email}}</li>
                             <li class="list-group-item">DMs: <a style="color: blueviolet;" href="{% url 'dms' profile.pk %}">Messages</a></li>
@@ -36,7 +37,7 @@
                             {% endif %}
                            {% if user == profile.user %}
                             <li class="list-group-item">
-                              <button class="btn btn-outline-secondary"><a style="text-decoration: none;" href="{% url 'profile_update' profile.pk %}">Edit Profile</a></button>
+                              <button class="btn btn-outline-secondary"><a style="text-decoration: none;" href="{% url 'profile_update' profile.user %}">Edit Profile</a></button>
                             </li>
                            {% endif %}
                           </ul>
@@ -83,5 +84,8 @@
               {% endfor %}
           </div>
         </div>
+        {% else %}
+        <h2>Seems Like You do not have a profile yet!</h2>
+        {% endif %}
     </div>
 {% endblock %}

@@ -36,7 +36,7 @@
                   {% if user.is_authenticated %}
                  
                    <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile' user.id %}">Profile</a>
+                    <a class="nav-link" href="{% url 'profile' user.username %}">Profile</a>
                    </li> 
                    <li class="nav-item">
                     <a class="nav-link" href="{% url 'create_profile' %}">Create Your profile</a>

@@ -1,26 +1,38 @@
 {% extends 'base.html' %}
 {% load comment_tags %}
+{% load cloudinary %}
 
 {% block content %}
     <div class="container mt-3">
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                      {{post.author|title}} &middot;
-                      <small>{{ post.created|timesince}} ago</small>
+            <div class="col-md-1"></div>
+            <div class="col-md-8">
+              <div class="post-item">
+                <div class="row">
+                    <div class="col-md-2">
+                        {% cloudinary post.author.profile.photo class="rounded-circle post-avi" %}
+
                     </div>
-                    <div class="card-body">
-                      <blockquote class="blockquote mb-0">
-                        <p>{{ post.body }}</p>
-                       <hr>
+                    <div class="col-md-10">
+                        <div class="">
+                        <a href="{% url 'profile' post.author %}"><strong>{{post.author|title}} </strong></a>&middot;
+                          <small>{{ post.created|timesince}} ago</small>
+                         
+                        </div>
+                        <div class="post-body">
+                            {{ post.body|truncatewords:100 }}
+                            <br>
+                          
                             {% if user == post.author %}
-                               {% include 'actions.html' %}
+                                {% include 'actions.html' %}
                             {% endif %}
-                      </blockquote>
+                       
+                          
+                        </div>
                     </div>
-                  </div>
+                </div>
+               </div>
+
                   {% render_comments post request %}
             </div>
         </div>

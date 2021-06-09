@@ -5,6 +5,7 @@ from .views import(
     ProfileListView,
     ProfileCreateView,
     ask_expert,
+    create_profile,
     retrieve_messages,
     MessageView,
     reply_msg,
@@ -13,9 +14,8 @@ from .views import(
 
 urlpatterns = [ 
     path('<slug:slug>/', ProfileDetailView.as_view(), name='profile'),
-    path('<int:pk>/update/', ProfileUpdateView.as_view(), name='profile_update'),
+    path('<slug:slug>/update/', ProfileUpdateView.as_view(), name='profile_update'),
     path('view_profiles/', ProfileListView.as_view(), name='profiles_list'),
-    path('create/', ProfileCreateView.as_view(), name='create_profile'),
     path('professional/details/', CompleteProfileView.as_view(), name='registration2'),
     path('<int:pk>/ask_expert/', ask_expert, name='ask'),
     path('<int:pk>/messages/', retrieve_messages, name='dms'),

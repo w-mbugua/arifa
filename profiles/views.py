@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from users.email import send_client_email
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
+from django.contrib.auth import get_user_model
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
@@ -15,7 +16,8 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = Profile
-    fields = ('bio', 'photo',)
+    fields = ('bio', 'photo', 'market')
+    
     template_name = 'profiles/profile_edit.html'
 
 class ProfileListView(LoginRequiredMixin, ListView):
@@ -34,10 +36,23 @@ class ProfileCreateView(LoginRequiredMixin, CreateView):
         profile.save()
         return super().form_valid(form)
 
+def create_profile(request):
+    form = UserProfileForm()
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES)
+        user = get_user_model().objects.order_by('-id')[:1]
+        profile = form.save(commit=False)
+        for item in user:
+            user = item
+        profile.user = user
+        profile.save()
+        return redirect('home')
+    return render(request, 'profiles/profile_reg.html', {"form": form})
+
 class CompleteProfileView(CreateView):
     form_class = Registration2Form
     model = Profile
-    template_name = 'profiles/registrarion2.html'
+    template_name = 'profiles/registration2.html'
 
 
 def ask_expert(request, pk):

@@ -16,7 +16,7 @@ from posts.models import Post
 
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('create_profile')
     template_name = 'signup/registration_form.html'
 
     def form_valid(self, form):

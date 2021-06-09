@@ -34,7 +34,7 @@
                                      
                                     </div>
                                     <div class="post-body">
-                                        {{ post.body }}
+                                        {{ post.body|truncatewords:100 }}
                                         <br>
                                         <a href="{% url 'post_details' post.id %}">Comment</a>
                                         {% if user == post.author %}
@@ -50,10 +50,7 @@
                         {% endfor %}
                         {% else %}
                         <p>The are no posts yet. Be the first!</p>
-                    {% endif %}
-                   
-                <hr>
-                              
+                    {% endif %}                             
                 </div>
                     
                 </div>
