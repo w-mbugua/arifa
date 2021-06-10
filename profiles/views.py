@@ -154,4 +154,10 @@ def review(request, slug):
             return redirect('profile', slug)
     return render(request, 'profiles/review.html', {"form": form})
 
+def show_followers(request, slug):
+    profile = Profile.objects.get(slug=slug)
+    profile_followers = profile.followers.all()
+    print("FOLLOWERS",profile_followers)
+    return render(request, 'profiles/followers.html', {"profile_followers": profile_followers})
+
 

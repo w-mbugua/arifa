@@ -12,6 +12,7 @@ from .views import(
     CompleteProfileView,
     user_follow,
     review,
+    show_followers,
     )
 
 urlpatterns = [ 
@@ -25,5 +26,6 @@ urlpatterns = [
     path('<slug:slug>/messages/', retrieve_messages, name='dms'),
     path('message/<int:msg_id>/', MessageView, name='message'),
     path('<int:msg_id>/send_reply/', reply_msg, name='reply_msg'),
+    path('<slug:slug>/followers/', show_followers, name="show_followers"),
     
 ]

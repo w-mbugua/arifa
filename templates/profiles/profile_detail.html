@@ -32,9 +32,11 @@
                              
                             <li>
                               {% with total_followers=profile.followers.count %}
-                              <span class="count">
-                                 <span class="total">{{ total_followers }}</span> follower{{ total_followers|pluralize }}
-                              </span>
+                              <a href="{% url 'show_followers' profile.slug %}">
+                                <span class="count">
+                                  <span class="total">{{ total_followers }}</span> follower{{ total_followers|pluralize }}
+                               </span>
+                              </a>
                               <br>
                               <a href="#" data-id="{{ profile.user.id }}" data-action="{% if user in profile.followers.all %}un{% endif %}follow" class="followbutton">
                               {% if user not in profile.followers.all %}
