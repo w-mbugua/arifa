@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital@0;1&display=swap');
+
+body{
+    font-family: 'Cormorant Garamond', serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+}
+#posts-box {
+  background-color: white;
+}
+.actions {
+  display: flex;
+}
+
+.sidenav {
+    height: 100%;
+    margin-top: 5rem;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+    background-color: #f76c6c;
+  }
+  .reg-img {
+  
+      width: 50vw;
+      height: 100%;
+  
+  }
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: #f76c6c;
+  }
+  
+  .main, .footer {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+nav {
+    background-color: #38618C;
+    }
+li a{
+  color: #030027;
+  text-decoration: none;
+}
+
+header a{
+  color: white;
+}
+
+.navbar-brand, .logo{
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    }
+.btn-search {
+    background-color: #030027;
+    color: wheat;
+    }
+.footer{
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 175px);
+        height: 60px;
+        line-height: 60px;
+        background-color: #A8D0E6;
+        font-size: 1rem;
+        text-align: center;
+}
+.post-form label{
+    display: none;
+}
+#div_id_image{
+    display: none;
+}
+#avi {
+  width: 100%;
+}
+
+li a {
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.action-icons {
+  padding: 10px;
+}
+
+
+.navbar-brand, .logo {
+    font-size: 2.2rem;
+    text-transform: uppercase;
+}
+.navbar-brand {
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+.navbar-brand{
+  box-shadow: none;
+  background-color: #38618C;
+  font-size: 2.2rem;
+}
+.searchbar{
+  margin-left: 6rem;
+}
+.post-avi {
+  width: 100%;
+  height: auto;
+}
+.starter img {
+  
+  width: 50%;
+  object-fit: contain;
+}
+.starter p{
+  margin-top: 5rem;
+}
+.reviews {
+  display: flex;
+  flex-wrap: wrap;
+}
+.reviews .card {
+  margin: 10px;
+}
+.person1 {
+  max-height: 200px;
+  max-width: 200px;
+}
+footer{
+  margin-top: 1rem;
+  padding-left: 20px;
+
+}
+.footer-form {
+  display: flex;
+
+}
+.footer-form #div_id_email {
+  margin-left: 1rem;
+}
+main{
+  background-color: white;
+}
+.footer-form button {
+  margin-left: 1rem;
+  padding: 10px;
+  height: 40px;
+  margin-top: 30px;
+  text-align: center;
+
+}
+.nav-link:hover{
+  color: #FFE74C;
+}
+
+.review-form label {
+  display: none;
+}
+.reply-box {
+  display: none;
+}
+.news-img {
+  object-fit: contain;
+  width: 100%;
+}
+.sidebar {
+  background-color: white;
+}
+.sidebar a{
+  text-decoration: none;
+}
+.sidebar a:hover{
+  background-color: green;
+  color: white;
+}
+.followbutton, .msg-btn {
+  border: 1px solid blueviolet;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 14px;
+}
+.small{
+  font-size: 12px;
+  text-transform: capitalize;
+}
+.logo:hover{
+  color: yellow;
+}
+.leading-text{
+  font-size: 2.2rem;
+}
+.subleading-text{
+  font-size: 1.5rem;
+}
+.landing-text {
+  margin-top: 3rem;
+}
+.mid-par {
+  margin-left: 10rem;
+}
