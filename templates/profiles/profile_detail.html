@@ -18,7 +18,7 @@
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="card-title"> {{profile}}</h5>
+                          <h5 class="card-title"> {{profile|title}}</h5>
                           <p class="card-text">{{ profile.bio }}</p>
                           <p class="card-text"><small>Joined: {{profile.created|date:"M Y"}}</small></p>
                         
@@ -32,14 +32,13 @@
                            {% endif %}
                             {% if user != profile.user %}
                              
-                            <li>
+                            <li style="display: flex; justify-content: space-between;" class="list-group-item">
                               {% with total_followers=profile.followers.count %}
                               <a href="{% url 'show_followers' profile.slug%}">
                                 <span class="count">
                                   <span class="total">{{ total_followers }}</span> follower{{ total_followers|pluralize }}
                                </span>
                               </a>
-                              <br>
                               <a href="#" data-id="{{ profile.id }}" data-action="{% if user in profile.followers.all %}un{% endif %}follow" class="followbutton">
                               {% if user not in profile.followers.all %}
                                 Follow
@@ -57,10 +56,11 @@
                             {% endif %}
                             </li>
 
-                           <li class="list-group-item">
-                            <button class="btn btn-outline-danger">
-                              <a href="{% url 'ask' profile.user.username %}">Talk to me</a>
-                            </button>
+                           <li class="text-center list-group-item">
+                            
+                            
+                              <a class="msg-btn text-center" href="{% url 'ask' profile.user.username %}">Talk to me</a>
+                           
                         </li>
                           </ul>
                       </div>
@@ -70,10 +70,10 @@
             <div class="col-md-3">
                 <h3>Reviews</h3>
                           
-                {% for client in profile.clients.all %}               
-                  {% if user.username == client.name %}
-                    <a href="{% url 'review_expert' profile.slug %}">Leave a review</a>
+                {% for client in profile.clients.all %}
                              
+                  {% if user.username == client.name %}
+                    <a href="{% url 'review_expert' profile.slug %}">Leave a review</a>          
                   {% endif %}               
                 {% endfor %}
                 <hr>
@@ -92,7 +92,7 @@
             </div>
         </div>
         <div class="row">
-          <div class="col-md-10">
+          <div class="col-md-8">
             <h3 class="text-center mb-3">Posts({{profile.get_posts.count}})</h3>
             <hr>
               {% for post in profile.get_posts %}
@@ -100,7 +100,7 @@
                   <div class="post-item">
                     <div class="row">
                         
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="">
                             <a href="{% url 'profile' post.author.id %}"><strong>{{post.author|title}} </strong></a>&middot;
                               <small>{{ post.created|timesince}} ago</small>

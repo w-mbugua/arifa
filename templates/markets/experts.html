@@ -6,24 +6,25 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-9">
-                <h1>Welcome To {{market.name}}</h1>
+                <h1 class="text-center mb-3">{{market.name}} Experts</h1>
                 <div class="experts-box">
                     {% for expert in experts %}
-                        <div class="row row-p">
+                        <div class="shadow p-3 mb-3 bg-white rounded row row-p">
                             <div class="col-md-2">
                                 {% cloudinary expert.photo class="rounded-circle post-avi" %}
                             </div>
-                            <div class="col-md-8">
-                                {{expert.user.username}}
+                            <div class="col-md-7">
+                                {{expert.user.username|title}}
                                 <br>
                                 {{expert.bio}}
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                     <button style="margin-top: 1rem;" class="btn btn-primary">
-                                        <a style="text-decoration: none; color: white;" href="{% url 'profile' expert.user.username %}">See Profile</a>
+                                        <a style="text-decoration: none; color: white;" href="{% url 'profile' expert.user.username %}">View Profile</a>
                                     </button>
                             </div>
                         </div>
+                       
                     {% endfor %}
                 </div>
             </div>

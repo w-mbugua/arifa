@@ -21,103 +21,117 @@
         {% include 'navbar.html' %}
     </header>
 
+   <main>
     <div class="starter">
-       <div class="row">
-           <div class="col-md-6">
-              <p> Are you looking for an advisor?
-            </p>
-            <p>
-                <a href="">Login</a>
-            </p>
-           </div>
-           <div class="col-md-6">
-            <img src="{% static 'images/inv.png' %}" alt="">
-           </div>
-       </div>
-       <div class="row">
-           
-           <div class="col-md-6">
-            <img src="{% static 'images/cons.png' %}" alt="">
-           </div>
-           <div class="col-md-6">
-            <p>Are you an expert in the investment industry?</p>
-            <p>
-                <a href="{% url 'signup' %}">Register</a>
-            </p>
-        </div>
-       </div>
-    </div>
-
-   <div class="text-center mid-par">
-       <h2><strong>Be Part of Our Happy Clients!</strong></h2>
-       <div class="reviews">
-        <div class="card" style="width: 18rem;">
-            <img src="{% static 'images/person1.jpg' %}" alt="" class="ml-5 mt-2 rounded-circle person1">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-          <!-- 2 -->
-          <div class="card" style="width: 18rem;">
-            <img src="{% static 'images/woman2.jpg' %}" alt="" class="ml-5 mt-2 rounded-circle person1">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-          </div>
-          <!-- 3 -->
-          <div class="card" style="width: 18rem; padding: 0;">
-            <img src="{% static 'images/woman1.jpg' %}" alt="" class="ml-5 mt-2 rounded-circle person1">
-            <div>
-              Some quick example text to build on the card title and make up the bulk of the card's content
-            </div>
-          </div>
-       </div>
-   </div>
-    
-    <!-- FOOTER  -->
-    <footer>
         <div class="row">
-           <div class="col-md-3"></div>
-           <div class="col-md-6">
-            <form class="footer-form" action="">
-                {{form|crispy}}
-                <button>Stay Informed</button>
-            </form>
-           </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <ul>
-                    <li>
-                        <img src="{% static 'images/twitter.png' %}">
-                        Twitter
-                    </li>
-                    <li>
-                        <img src="{% static 'images/linkedin.png' %}">
-                        Linkedin
-                    </li>
-                </ul>
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+               <div class="landing-text">
+                 <span class="leading-text">Looking to build your wealth? Don't know where to start?</span>
+                 <br>
+                 <span class="subleading-text"><span><a href="{% url 'investor_signup' %}">Register</a></span> today and get in touch with financial market experts</span>
+                     <br>
+                  <span>Have an account already? <a href="{% url 'login' %}">Login</a></span>
+               </div>
+          
             </div>
             <div class="col-md-6">
-                <ul>
-                    <li>Blog</li>
-                    <li>Contact Us</li>
-                    <li>Subscribe To Newsletter</li>
-                    <li>About</li>
-                    <li>Complaints</li>
-                </ul>
+             <img src="{% static 'images/inv.png' %}" alt="">
             </div>
         </div>
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; Arifa &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-6">
+             <img style="width: 100%;" src="{% static 'images/cons.png' %}" alt="">
+            </div>
+            <div class="col-md-4">
+             <div class="landing-text">
+                 <span class="leading-text">Have expertise analyzing the financial markets?Know where the investment opportunities are?</span>
+                 <br>
+                 <span class="subleading-text"><span><a href="{% url 'expert_signup' %}">Register</a></span> today and connect with potential investors</span>
+                     <br>
+                  <span>Have an account already? <a href="{% url 'login' %}">Login</a></span>
+               </div>
+         </div>
+        </div>
+     </div>
+ 
+    <div class="mid-par">
+        <h2 class="text-center"><strong>Testimonials</strong></h2>
+         <div class=" row testimonials">
+              <!-- 1 -->
+             <div class="col-md-3 one">
+                 <div>
+                     <img src="{% static 'images/person1' %}" alt="">
+                 </div>
+                 <div class="texti">
+                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis at, quaerat hic repellat excepturi aliquid! Temporibus explicabo unde accusantium deserunt culpa illum, rem porro mollitia, fuga enim vitae illo quos!
+                 </div>
+             </div>
+              <!-- 2 -->
+              <div class="col-md-3 one">
+                 <div>
+                     <img src="{% static 'images/woman1' %}" alt="">
+                 </div>
+                 <div class="texti">
+                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis at, quaerat hic repellat excepturi aliquid! Temporibus explicabo unde accusantium deserunt culpa illum, rem porro mollitia, fuga enim vitae illo quos!
+                 </div>
+             </div>
+          
+           <!-- 3 -->
+           <div class="col-md-3 one">
+             <div>
+                 <img src="{% static 'images/woman2' %}" alt="">
+             </div>
+             <div class="texti">
+                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis at, quaerat hic repellat excepturi aliquid! Temporibus explicabo unde accusantium deserunt culpa illum, rem porro mollitia, fuga enim vitae illo quos!
+             </div>
+         </div>
+ 
+         </div>
+         
+          
+        </div>
+   </main>
+    
+    <!-- FOOTER  -->
+    
+    <footer>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+             <form class="footer-form" action="">
+                 {{form|crispy}}
+                 <button style="border-radius: 10px;" class="btn-primary">Stay Informed</button>
+             </form>
+            </div>
+         </div>
+         <div class="row">
+             <div class="col-md-3"></div>
+             <div class="col-md-3">
+                 <ul>
+                     <li>
+                         <img src="{% static 'images/twitter.png' %}">
+                         Twitter
+                     </li>
+                     <li>
+                         <img src="{% static 'images/linkedin.png' %}">
+                         Linkedin
+                     </li>
+                 </ul>
+             </div>
+             <div class="col-md-6">
+                 <ul>
+                     <li>Blog</li>
+                     <li>Contact Us</li>
+                     <li>Subscribe To Newsletter</li>
+                     <li>About</li>
+                     <li>Complaints</li>
+                 </ul>
+             </div>
+         </div>
+         <p class="float-right"><a href="#">Back to top</a></p>
+         <p>&copy; Arifa &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
     </footer>
 
 

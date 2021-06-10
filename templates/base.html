@@ -22,48 +22,55 @@
 
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <nav class="col-md-2 d-none d-md-block sidebar">
                 <div class="sidebar-sticky">
                 {% block sidebar %}
                   <ul style="line-height: 450%;">
-                    <li>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
-                        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
-                      </svg>
-                      <a style="text-decoration: none;"  href="{% url 'home' %}">Home</a>
-                    </li>
-                  </li>
+                  
                   {% if user.is_authenticated %}
                   
                    {% if user.is_expert %}
-                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile' user.profile.slug %}">Profile</a>
+                   <li>
+                    <a href="{% url 'profile' user.profile.slug %}">Profile</a>
                    </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'create_profile' %}">Create Your profile</a>
+                   <li>
+                    <a href="{% url 'create_profile' %}">Update Profile</a>
                   </li>
                    {% endif %}
                    {% if user.is_investor %}
                    <li>
-                     <a class="nav-link" href="{% url 'my_messages' %}">Messages</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-dots" viewBox="0 0 16 16">
+                      <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+                      <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg>
+                     <a href="{% url 'my_messages' %}">Messages</a>
                    </li>
                    <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-newspaper" viewBox="0 0 16 16">
+                      <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5v-11zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5H12z"/>
+                      <path d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z"/>
+                    </svg>
                      <a href="">Interesting news</a>
                      {% for item in user.investor.interests.all %}
-                        <p><a href="{% url 'interesting_news' item %}"> {{item}}</a></p>
+                       <a class="ml-4 text-center" href="{% url 'interesting_news' item %}"> {{item}}</a>
+                       <br>
                      {% endfor %}
                    </li>
                     {% endif %}
-                     <li class="nav-item">
-                       <a class="nav-link" href="{% url 'logout'%}">Logout</a>
+                     <li>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                      </svg>
+                       <a href="{% url 'logout'%}">Logout</a>
                      </li>
                   {% else %}
-                     <li class="nav-item">
-                       <a class="nav-link" href="{% url 'login'%}">Login</a>
+                     <li>
+                       <a href="{% url 'login'%}">Login</a>
                      </li>
                      
-                     <li class="nav-item">
-                         <a class="nav-link" href="{% url 'signup'%}">Register</a>
+                     <li>
+                         <a href="{% url 'signup'%}">Register</a>
                        </li>
                  {% endif %}
                   </ul>

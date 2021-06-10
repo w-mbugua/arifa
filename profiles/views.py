@@ -150,13 +150,17 @@ def user_follow(request):
 
 def review(request, slug):
     form = ReviewForm()
+    profile = Profile.objects.get(slug=slug)
     if request.method == 'POST':
         form = ReviewForm(request.POST)
+        if request.user in profile.clients.all():
+            print('REPEAT!!')
+            return redirect('profile', slug)
         if form.is_valid():
             print("IT IS VALID")
             review = form.save(commit=False)
             review.user = request.user
-            profile = Profile.objects.get(slug=slug)
+            
             review.reviewed = profile
             review.save()
             print("REVIEW",review.user, review.reviewed)

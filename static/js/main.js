@@ -9,7 +9,7 @@ $(document).ready(function(){
     $('a.followbutton').click(function(event){
       event.preventDefault()
       console.log('whoooosh')
-      $(this).css('background-color', 'green')
+     
       $.post("/profile/follow/",{
         id: $(this).data('id'),
         action: $(this).data('action')

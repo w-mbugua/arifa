@@ -5,6 +5,13 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: whitesmoke;
+}
+#posts-box {
+  background-color: white;
+}
+.actions {
+  display: flex;
 }
 
 .sidenav {
@@ -116,7 +123,7 @@ li a {
   font-size: 2.2rem;
 }
 .searchbar{
-  margin-left: 12rem;
+  margin-left: 6rem;
 }
 .post-avi {
   width: 100%;
@@ -144,8 +151,7 @@ li a {
 footer{
   margin-top: 1rem;
   padding-left: 20px;
-  background-color: #38618C;
-  color: #fff;
+
 }
 .footer-form {
   display: flex;
@@ -153,6 +159,9 @@ footer{
 }
 .footer-form #div_id_email {
   margin-left: 1rem;
+}
+main{
+  background-color: white;
 }
 .footer-form button {
   margin-left: 1rem;
@@ -165,9 +174,7 @@ footer{
 .nav-link:hover{
   color: #FFE74C;
 }
-.row-p {
-  border-bottom: 1px solid black;
-}
+
 .review-form label {
   display: none;
 }
@@ -177,4 +184,39 @@ footer{
 .news-img {
   object-fit: contain;
   width: 100%;
+}
+.sidebar {
+  background-color: white;
+}
+.sidebar a{
+  text-decoration: none;
+}
+.sidebar a:hover{
+  background-color: green;
+  color: white;
+}
+.followbutton, .msg-btn {
+  border: 1px solid blueviolet;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 14px;
+}
+.small{
+  font-size: 12px;
+  text-transform: capitalize;
+}
+.logo:hover{
+  color: yellow;
+}
+.leading-text{
+  font-size: 2.2rem;
+}
+.subleading-text{
+  font-size: 1.5rem;
+}
+.landing-text {
+  margin-top: 3rem;
+}
+.mid-par {
+  margin-left: 10rem;
 }

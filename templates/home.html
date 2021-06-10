@@ -5,57 +5,45 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-6">
-                <!-- <h3>What's on your mind?</h3> -->
-                <!-- <div>
-                    <form class="post-form" action="{% url 'add_post' %}" method='POST'>
-                        {% csrf_token %}
-                        {{form.as_p}}
-                        <button class="btn btn-primary post-btn" type="submit">Post</button>
-                    </form>
-                </div> -->
-           
-                    <a style="text-decoration: none;" href="{% url 'add_post' %}" >Write a Post</a>
-             
-                <hr class="content-border">
-                <div id="posts-box">
+
+            <div class="col-md-8">
+              {% if user.is_expert %}
+              <div class="text-center">
+                <a style="text-decoration: none;" href="{% url 'add_post' %}" >Share Your Thoughts</a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-pen-fill" viewBox="0 0 16 16">
+                    <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                  </svg>
+               </div>
+              {% endif %}
+                  
                     {% if posts %}
                         {% for post in posts %}
-                           <div class="post-item">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    {% cloudinary post.author.profile.photo class="rounded-circle post-avi" %}
-
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="">
-                                    <a href="{% url 'profile' post.author %}"><strong>{{post.author|title}} </strong></a>&middot;
-                                      <small>{{ post.created|timesince}} ago</small>
-                                     
+                            <div id="posts-box" class="shadow p-3 mb-2 bg-white rounded">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        {% cloudinary post.author.profile.photo class="rounded-circle post-avi" %}
+            
                                     </div>
-                                    <div class="post-body">
-                                        {{ post.body|truncatewords:100 }}
-                                        <br>
-                                        <a href="{% url 'post_details' post.id %}">Comment</a>
-                                        {% if user == post.author %}
-                                            {% include 'actions.html' %}
-                                        {% endif %}
-                                   
-                                      
+                                    <div class="col-md-10">
+                                        <div class="">
+                                        <a href="{% url 'profile' post.author %}"><strong>{{post.author|title}} </strong></a>&middot;
+                                            <small>{{ post.created|timesince}} ago</small>
+                                            
+                                        </div>
+                                        <div class="post-body">
+                                            {{ post.body|truncatewords:100 }}
+                                            <br>
+                                                {% include 'actions.html' %}                     
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                           </div>
-                           <hr>
+                            <br>
                         {% endfor %}
-                        {% else %}
-                        <p>The are no posts yet. Be the first!</p>
-                    {% endif %}                             
-                </div>
-                    
+                    {% else %}
+                    <p>There are no posts yet</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
-   
-    </div>
 {% endblock %}
