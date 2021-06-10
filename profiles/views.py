@@ -144,12 +144,14 @@ def review(request, slug):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
+            print("IT IS VALID")
             review = form.save(commit=False)
             review.user = request.user
             profile = Profile.objects.get(slug=slug)
             review.reviewed = profile
             review.save()
+            print("REVIEW",review.user, review.reviewed)
             return redirect('profile', slug)
-    return render(request, 'profiles/profile_detail.html', {"form": form})
+    return render(request, 'profiles/review.html', {"form": form})
 
 

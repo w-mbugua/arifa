@@ -64,21 +64,27 @@
                   </div>
             </div>
             <div class="col-md-3">
-              <h3>Reviews</h3>
-           
-              {% for client in profile.clients.all %}
-               
-                {% if user.username == client.name %}
-                  <a href="{% url 'review_expert' profile.slug %}">Leave a review</a>
-                  <form class="review-form" action="." method="POST">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <input type="submit" value="submit">
-                  </form>
-                 
-                {% endif %}
-               
-              {% endfor %}
+                <h3>Reviews</h3>
+                          
+                {% for client in profile.clients.all %}               
+                  {% if user.username == client.name %}
+                    <a href="{% url 'review_expert' profile.slug %}">Leave a review</a>
+                             
+                  {% endif %}               
+                {% endfor %}
+                <hr>
+
+                {% for review in profile.reviews.all %}
+                   <div>
+                     <div class="ml-2 row">
+                       <small class="text-muted">{{review.user}} &middot; {{review.created|date:"M Y"}} wrote:</small>
+                     </div>
+                     <div class="ml-2 row">
+                       {{review.body}}
+                     </div>
+                   </div>
+                   <hr>
+                {% endfor %}
             </div>
         </div>
         <div class="row">
@@ -89,10 +95,7 @@
                 <div>
                   <div class="post-item">
                     <div class="row">
-                        <div class="col-md-2">
-                            {% cloudinary post.author.profile.photo class="rounded-circle post-avi" %}
-
-                        </div>
+                        
                         <div class="col-md-10">
                             <div class="">
                             <a href="{% url 'profile' post.author.id %}"><strong>{{post.author|title}} </strong></a>&middot;
