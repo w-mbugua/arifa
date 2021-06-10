@@ -1,0 +1,1 @@
+web: gunicorn arifa.wsgi --log-file -
