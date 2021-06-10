@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% load cloudinary %}
 
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-md-1"></div>
-
+           
             <div class="col-md-8">
               {% if profile %}
                 <div class="card mb-3">
@@ -27,13 +27,9 @@
                             <li class="list-group-item">Field: {{profile.market}}</li>
                             <li class="list-group-item">Experience: {{profile.experience}} years</li>
                             <li class="list-group-item">Email: {{profile.user.email}}</li>
-                            <li class="list-group-item">DMs: <a style="color: blueviolet;" href="{% url 'dms' profile.pk %}">Messages</a></li>
+                            <li class="list-group-item">DMs: <a style="color: blueviolet;" href="{% url 'dms' profile.slug %}">Messages</a></li>
                             {% if user != profile.user %}
-                              <li class="list-group-item">
-                                <button class="btn btn-outline-danger">
-                                  <a href="{% url 'ask' profile.user.username %}">Talk to me</a>
-                                </button>
-                            </li>
+                             
                             <li>
                               {% with total_followers=profile.followers.count %}
                               <span class="count">
@@ -54,11 +50,35 @@
                             <li class="list-group-item">
                               <button class="btn btn-outline-secondary"><a style="text-decoration: none;" href="{% url 'profile_update' profile.user %}">Edit Profile</a></button>
                             </li>
-                           {% endif %}
+                            {% endif %}
+                            </li>
+
+                           <li class="list-group-item">
+                            <button class="btn btn-outline-danger">
+                              <a href="{% url 'ask' profile.user.username %}">Talk to me</a>
+                            </button>
+                        </li>
                           </ul>
                       </div>
                     </div>
                   </div>
+            </div>
+            <div class="col-md-3">
+              <h3>Reviews</h3>
+           
+              {% for client in profile.clients.all %}
+               
+                {% if user.username == client.name %}
+                  <a href="{% url 'review_expert' profile.slug %}">Leave a review</a>
+                  <form class="review-form" action="." method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input type="submit" value="submit">
+                  </form>
+                 
+                {% endif %}
+               
+              {% endfor %}
             </div>
         </div>
         <div class="row">

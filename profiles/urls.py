@@ -10,11 +10,13 @@ from .views import(
     MessageView,
     reply_msg,
     CompleteProfileView,
-    user_follow
+    user_follow,
+    review,
     )
 
 urlpatterns = [ 
     path('follow/', user_follow, name='user_follow'),
+    path('review/<slug:slug>/', review, name='review_expert'),
     path('<slug:slug>/', ProfileDetailView.as_view(), name='profile'),
     path('<slug:slug>/update/', ProfileUpdateView.as_view(), name='profile_update'),
     path('view_profiles/', ProfileListView.as_view(), name='profiles_list'),

@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, UpdateView, ListView, CreateView
 from .models import Profile, Message, Client
-from .forms import UserProfileForm, MessageForm, ReplyForm, Registration2Form
+from .forms import ReviewForm, UserProfileForm, MessageForm, ReplyForm, Registration2Form
 from django.contrib.auth.mixins import LoginRequiredMixin
 from users.email import send_client_email
 from django.contrib.auth import get_user_model
@@ -20,7 +20,13 @@ from django.views.decorators.csrf import csrf_exempt
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
+
     template_name = 'profiles/profile_detail.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['form'] = ReviewForm()
+        return super().get_context_data(**kwargs)
+
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = Profile
@@ -83,8 +89,8 @@ def ask_expert(request, slug):
     return render(request, 'profiles/ask.html', {"form": form})
 
 # for both or just the expert?
-def retrieve_messages(request, pk):
-    profile = Profile.objects.get(pk=pk)
+def retrieve_messages(request, slug):
+    profile = Profile.objects.get(slug=slug)
     messages = profile.get_messages()
     print("Profile",profile)
     print("Messages",messages)
@@ -132,4 +138,18 @@ def user_follow(request):
         except get_user_model().DoesNotExist:
             return JsonResponse({"status": "error"})
     return JsonResponse({"status": "error"})
+
+def review(request, slug):
+    form = ReviewForm()
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            profile = Profile.objects.get(slug=slug)
+            review.reviewed = profile
+            review.save()
+            return redirect('profile', slug)
+    return render(request, 'profiles/profile_detail.html', {"form": form})
+
 

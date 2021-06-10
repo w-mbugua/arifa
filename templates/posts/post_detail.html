@@ -21,13 +21,13 @@
                         </div>
                         <div class="post-body">
                             {{ post.body }}
-                            {% with total_likes=post.likes.count likes=post.likes.all %}
+                     
                                 <div class="post-info">
                                     <span class="count">
-                                        {{total_likes}} like{{total_likes|pluralize }}                                      
+                                        {{post.get_likes}} like{{post.get_likes|pluralize }}                                      
                                     </span>
-                                    <a href="#" data-id="{{post.id}}" data-action="{% if user in likes %}un{% endif %}like" class="likebutton">
-                                        {% if user not in likes %}
+                                    <a href="#" data-id="{{post.id}}" data-action="{% if user in post.likes.all %}un{% endif %}like" class="likebutton">
+                                        {% if user not in post.likes.all %}
                                         Like
                                         {% else %}
                                         Unlike
@@ -37,7 +37,7 @@
                                 <div class="post-likes">
                                     
                                 </div>
-                            {% endwith %}
+                         
                             <br>
                           
                             {% if user == post.author %}

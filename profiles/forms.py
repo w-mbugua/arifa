@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import widgets
-from .models import Profile, Message
+from .models import Profile, Message, Review
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -23,3 +23,11 @@ class MessageForm(forms.ModelForm):
 
 class ReplyForm(forms.Form):
     response = forms.CharField(widget=forms.Textarea())
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        exclude = ('user', 'reviewed',)
+        widgets = {
+            'body': forms.Textarea(attrs={'rows': '3'})
+        }

@@ -38,6 +38,8 @@ class Profile(models.Model):
         return self.messages.all()
 
 
+
+
 class Contact(models.Model):
         user_from = models.ForeignKey(Profile, related_name='rel_from_set', on_delete=models.CASCADE)
         user_to = models.ForeignKey(Profile, related_name='rel_to_set', on_delete=models.CASCADE)
@@ -51,7 +53,7 @@ class Contact(models.Model):
 class Client(models.Model):
     name = models.CharField(max_length=30)
     email = models.EmailField()
-    client_of = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    client_of = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='clients')
     
     def __str__(self):
         return f"{self.name} client of {self.client_of}"
@@ -66,6 +68,20 @@ class Message(models.Model):
 
     def __str__(self):
         return f"to {self.to} from {self.f_rom.name}"
+
+class Review(models.Model):
+    body = models.CharField(max_length=500)
+    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    reviewed = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='reviews')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.body[:50]
+    
+    class Meta:
+        ordering = ('-created',)
+    
 
 
 

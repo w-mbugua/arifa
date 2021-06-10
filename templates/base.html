@@ -34,13 +34,15 @@
                     </li>
                   </li>
                   {% if user.is_authenticated %}
-                 
+                  
+                   {% if user.is_expert %}
                    <li class="nav-item">
                     <a class="nav-link" href="{% url 'profile' user.profile.slug %}">Profile</a>
-                   </li> 
+                   </li>
                    <li class="nav-item">
                     <a class="nav-link" href="{% url 'create_profile' %}">Create Your profile</a>
                   </li>
+                   {% endif %}
                      <li class="nav-item">
                        <a class="nav-link" href="{% url 'logout'%}">Logout</a>
                      </li>
