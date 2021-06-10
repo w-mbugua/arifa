@@ -5,6 +5,8 @@ from cloudinary.models import CloudinaryField
 from posts.models import Post
 from django.template.defaultfilters import slugify
 from markets.models import Market
+from users.models import CustomUser
+
 
 EXPERTISE_CHOICES = (('Equities', 'Equities'), ('Money Market', 'Money Market'), ('Real Estate', 'Real Estate'), ('Crypto', 'Crypto'))
 class Profile(models.Model):
@@ -17,7 +19,7 @@ class Profile(models.Model):
     employer = models.CharField(max_length=50, null=True, blank=True)
     slug = models.SlugField(unique=True)
     market = models.ForeignKey(Market, on_delete=models.CASCADE, related_name='experts')
-    following = models.ManyToManyField('self', through='Contact', related_name='followers', symmetrical=False)
+    followers = models.ManyToManyField(get_user_model(), related_name='followers')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.user)

@@ -121,19 +121,18 @@ def reply_msg(request, msg_id):
 @require_POST
 @csrf_exempt
 def user_follow(request):
-    user_id = request.POST.get('id')
+    profile_id = request.POST.get('id')
     action = request.POST.get('action')
-    print("USERID - ACTION",user_id, action)
-    if user_id and action:
+    profile = Profile.objects.get(id=profile_id)
+    if profile_id and action:
         try:
-            user = Profile.objects.get(user_id=user_id)
-            user_f = Profile.objects.get(user=request.user)
-            print("USER_T - USER_F",user,user_f)
+            to_follow = profile
+            followr = request.user
+            print(f"{followr} WANTS TO FOLLOW {to_follow}")
             if action == 'follow':
-                Contact.objects.get_or_create(user_from=user_f, user_to=user)
-                print("FOLLOWERS",user.followers.all())
+                profile.followers.add(followr)
             else:
-                Contact.objects.filter(user_from=user_f, user_to=user).delete()
+                profile.followers.remove(followr)
             return JsonResponse({"status": "ok"})
         except get_user_model().DoesNotExist:
             return JsonResponse({"status": "error"})

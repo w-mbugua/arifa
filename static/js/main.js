@@ -18,9 +18,10 @@ $(document).ready(function(){
 
           $('a.followbutton').text(prev_action == 'follow' ? 'Unfollow' : 'Follow');
 
-          var prev_followers = parseInt($('span.count.total').text());
+          var prev_followers = parseInt($('span.total').text());
+          console.log("followers",prev_followers)
 
-          $('span.count.total').text(prev_action == 'follow' ? prev_followers + 1 : prev_followers - 1);
+          $('span.total').text(prev_action == 'follow' ? prev_followers + 1 : prev_followers - 1);
         }
       }
       )
