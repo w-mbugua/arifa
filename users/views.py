@@ -3,11 +3,8 @@ from django.views.generic import CreateView, View
 from django.urls import reverse_lazy
 from .forms import CustomUserCreationForm, ExpertSignUpForm, NewsLetterForm, InvestorSignUpForm
 from .models import CustomUser
-from profiles.forms import Registration2Form
 from django.http import JsonResponse
 from django.contrib.auth import login
-
-
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin

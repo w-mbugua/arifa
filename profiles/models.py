@@ -8,13 +8,11 @@ from markets.models import Market
 from users.models import CustomUser
 
 
-EXPERTISE_CHOICES = (('Equities', 'Equities'), ('Money Market', 'Money Market'), ('Real Estate', 'Real Estate'), ('Crypto', 'Crypto'))
 class Profile(models.Model):
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, related_name='profile')
     bio = models.TextField()
     photo = CloudinaryField('image')
     created = models.DateTimeField(auto_now_add=True)
-    expertise = models.CharField(choices=EXPERTISE_CHOICES, max_length=12)
     experience = models.IntegerField()
     employer = models.CharField(max_length=50, null=True, blank=True)
     slug = models.SlugField(unique=True)
@@ -44,20 +42,6 @@ class Profile(models.Model):
         profile = cls.objects.filter(user__username__icontains = p_name)
         return profile
 
-
-
-
-
-
-class Contact(models.Model):
-        user_from = models.ForeignKey(Profile, related_name='rel_from_set', on_delete=models.CASCADE)
-        user_to = models.ForeignKey(Profile, related_name='rel_to_set', on_delete=models.CASCADE)
-        created = models.DateTimeField(auto_now_add=True)
-        
-        class Meta:
-            ordering = ('-created',)
-        def __str__(self):
-            return f'{self.user_from} follows {self.user_to}'
 
 class Client(models.Model):
     name = models.CharField(max_length=30)

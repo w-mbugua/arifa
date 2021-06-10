@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, UpdateView, ListView, CreateView
 from .models import Profile, Message, Client
-from .forms import ReviewForm, UserProfileForm, MessageForm, ReplyForm, Registration2Form
+from .forms import ReviewForm, UserProfileForm, MessageForm, ReplyForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from users.email import send_client_email
 from django.contrib.auth import get_user_model
@@ -14,7 +14,7 @@ from users.decorators import expert_required
 
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-from .models import Contact
+
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -64,9 +64,7 @@ def create_profile(request):
     return render(request, 'profiles/profile_reg.html', {"form": form})
 
 class CompleteProfileView(CreateView):
-    form_class = Registration2Form
-    model = Profile
-    template_name = 'profiles/registration2.html'
+        pass
 
 
 def ask_expert(request, slug):
