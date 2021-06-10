@@ -18,11 +18,20 @@ class Post(models.Model):
 
     def __str__(self):
         return self.body[:20]
-
-
     
     def get_absolute_url(self):
          return reverse('post_detail', args=[str(self.id)])
 
     def get_likes(self):
         return self.likes.all().count()
+
+class BlogPost(models.Model):
+    title = models.CharField(max_length=200)
+    author = models.CharField(max_length=100)
+    body = models.TextField()
+    link = models.URLField()
+    image_url = models.URLField()
+    pub_time = models.DateTimeField()
+
+    def __str__(self):
+        return self.title

@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView, CreateView
 from django.views.generic.edit import UpdateView, DeleteView
+from requests.api import get
 from .models import Post
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -11,6 +12,8 @@ from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from users.decorators import expert_required
+from users.models import Investor
+from .request import get_news
 
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
@@ -63,3 +66,11 @@ def post_like(request):
 
     else:
         return JsonResponse({"status": "error"})
+
+def interesing_news(request, interest):
+    user = Investor.objects.get(user=request.user)
+    interest = user.interests.all()
+    print(interest)
+    news = get_news(interest)
+    return render(request, 'posts/blog.html', {"news": news})
+
