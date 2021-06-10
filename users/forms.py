@@ -43,6 +43,7 @@ class InvestorSignUpForm(UserCreationForm):
 class ExpertSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = CustomUser
+        fields = UserCreationForm.Meta.fields + ('email',)
     
     def save(self, commit=True):
         user = super().save(commit=False)

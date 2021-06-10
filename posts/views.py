@@ -68,10 +68,12 @@ def post_like(request):
         return JsonResponse({"status": "error"})
 
 def interesing_news(request, interest):
-    user = Investor.objects.get(user=request.user)
-    interests = user.interests.all()
-    for item in interests:
-        print(item)
+    # user = request.user 
+    # if user.is_investor:
+    #       user = Investor.objects.get(user=request.user)
+    #       interests = user.interests.all()
+    # for item in interests:
+    #     print(item)
     news = get_news(interest)
     return render(request, 'posts/blog.html', {"news": news, "interest": interest})
 

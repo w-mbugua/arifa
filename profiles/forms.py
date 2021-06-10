@@ -5,7 +5,7 @@ from .models import Profile, Message, Review, Reply
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ('expertise', 'user', 'slug', 'following',)
+        exclude = ('expertise', 'user', 'slug', 'followers',)
         widgets = {
             'bio': forms.Textarea(attrs={'rows': '3'})
         }
@@ -13,7 +13,7 @@ class UserProfileForm(forms.ModelForm):
 class Registration2Form(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ('following', )
+        exclude = ('followers', )
         fields = ('expertise', 'experience', 'employer',)
 
 class MessageForm(forms.ModelForm):

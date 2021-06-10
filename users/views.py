@@ -56,7 +56,7 @@ class ExpertSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('home')
+        return redirect('create_profile')
 
 @login_required
 def home(request):

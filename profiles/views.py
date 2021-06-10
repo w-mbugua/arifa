@@ -60,7 +60,7 @@ def create_profile(request):
             user = item
         profile.user = user
         profile.save()
-        return redirect('home')
+        return redirect('profile', profile.slug)
     return render(request, 'profiles/profile_reg.html', {"form": form})
 
 class CompleteProfileView(CreateView):

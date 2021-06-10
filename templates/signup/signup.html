@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Sign up for a free account</h2>
-  <p class="lead">Select below the type of account you want to create</p>
-  <a href="{% url 'investor_signup' %}" class="btn btn-student btn-lg" role="button">I'm seeking an investment expert</a>
-  <a href="{% url 'expert_signup' %}" class="btn btn-teacher btn-lg" role="button">I'm an investments expert</a>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <h2>Sign up for a free account</h2>
+        <p class="lead">Select below the type of account you want to create</p>
+        <a href="{% url 'investor_signup' %}" class="btn btn-success btn-lg" role="button">I'm a potential investor</a>
+        <a href="{% url 'expert_signup' %}" class="btn btn-outline-success btn-lg" role="button">I'm an investments expert</a>
+      </div>
+    </div>
+  </div>
 {% endblock %}

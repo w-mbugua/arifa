@@ -56,12 +56,13 @@
                             {% endif %}
                             </li>
 
-                           <li class="text-center list-group-item">
-                            
-                            
-                              <a class="msg-btn text-center" href="{% url 'ask' profile.user.username %}">Talk to me</a>
                            
-                        </li>
+                             {% if user != profile.user %}
+                             <li class="text-center list-group-item"></li>
+                             <a class="msg-btn text-center" href="{% url 'ask' profile.user.username %}">Talk to me</a>
+                            </li>
+                             {% endif %}
+                        
                           </ul>
                       </div>
                     </div>

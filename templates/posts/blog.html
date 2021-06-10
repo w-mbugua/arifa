@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h3 class="text-center"><strong>{{interest}} News</strong></h3>
+    <h3 class="text-center"><strong>{{interest|title}} News</strong></h3>
     <br>
     {% for item in news %}
     <div class="card mb-3" style="min-width: 540px; font-family: 'Poppins', sans-serif;">
