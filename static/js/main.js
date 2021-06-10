@@ -1,4 +1,10 @@
 $(document).ready(function(){
+
+    $('.replybtn').click(function(e){
+      e.preventDefault();
+      console.log('aye')
+      $('.reply-box').toggle()
+    })
     console.log('ready!')
     $('a.followbutton').click(function(event){
       event.preventDefault()

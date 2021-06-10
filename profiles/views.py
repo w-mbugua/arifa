@@ -100,10 +100,14 @@ def MessageView(request, msg_id):
     form = ReplyForm()
     message = Message.objects.get(pk=msg_id)
     if request.method == 'POST':
+        print("RESPONSE FROM EXPERT",request.user.is_expert)
         form = ReplyForm(request.POST)
         if form.is_valid():
             reply = form.save(commit=False)
-            
+            reply.sender = request.user
+            reply.message = message
+            reply.save()
+            return redirect('message', message.id)
     return render(request, 'messages/message_details.html', {"message": message, "form": form})
 
 # for both?
@@ -164,5 +168,11 @@ def show_followers(request, slug):
     profile_followers = profile.followers.all()
     print("FOLLOWERS",profile_followers)
     return render(request, 'profiles/followers.html', {"profile_followers": profile_followers})
+
+def client_messages(request):
+    user = request.user
+    messages = Message.objects.filter(f_rom=user).all()
+    return render(request, 'messages/client_messages.html', {"messages": messages})
+
 
 

@@ -171,3 +171,6 @@ footer{
 .review-form label {
   display: none;
 }
+.reply-box {
+  display: none;
+}

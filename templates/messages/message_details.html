@@ -1,33 +1,56 @@
 {% extends 'base.html' %}
 {% load comment_tags %}
 {% load crispy_forms_tags %}
+{% load cloudinary %}
 
 {% block content %}
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-6">
-                <div class="card">
+                <div class="main-msg">
                     <div class="card-header">
-                     From {{message.f_rom.name|title}} &middot;
-                      <small>Sent{{ message.sent|timesince}} ago</small>
+                     From {{message.f_rom|title}} &middot;
+                      <small>Sent {{ message.sent|timesince}} ago</small>
                     </div>
                     <div class="card-body">
                       <blockquote class="blockquote mb-0">
                         <p>{{ message.message }}</p>
-                            <button class="btn btn-success">
-                                <a href="{% url 'reply_msg' message.id %}">Reply</a>
+                            <button class="replybtn btn btn-outline-secondary">
+                                <a href="#">Reply</a>
                             </button>  
-                            <button class="btn btn-danger">Delete</button>                                               
+                                                                      
                       </blockquote>
                     </div>
                   </div>
-                 <div class="ml-4 reply-box">
-                    <form action="" method="POST">
+                  <div class="ml-4 reply-box">
+                    <form action="{% url 'reply_to_message' message.id %}" method="POST">
+                        {% csrf_token %}
                         {{form|crispy}}
                         <input type="submit" value='reply'>
                     </form>
                  </div>
+                  <div class="ml-4 replies-box">
+                    {% for reply in message.replies.all %}
+                    <div class="row">
+                      {% if reply.sender.is_expert %}
+                      <div class="col-md-4">
+                          {% cloudinary reply.sender.profile.photo class="rounded-circle post-avi" %}
+                      </div>
+                      <div class="reply-info col-md-6">
+                         <p class="text-muted"><a href="{% url 'profile' reply.sender.profile.slug %}">{{reply.sender.username }}</a> &middot; {{reply.created|timesince}} ago</p>
+                      </div>
+                      {% else %}
+                          <p class="text-muted">{{reply.sender.username }} &middot; {{reply.created|timesince}} ago</p>
+                      {% endif %}
+                    </div>
+                    <div class="row">
+                      <p style="font-style: italic;">{{reply.response}}</p>
+                    </div>                   
+                    {% endfor %}
+                  </div>
+                  <hr>
+                
             </div>
         </div>
     </div>

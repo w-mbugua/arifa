@@ -55,7 +55,7 @@ class Contact(models.Model):
 class Client(models.Model):
     name = models.CharField(max_length=30)
     email = models.EmailField()
-    client_of = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='clients')
+    client_of = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='clients') # expert
     
     def __str__(self):
         return f"{self.name} client of {self.client_of}"
@@ -65,17 +65,18 @@ class Message(models.Model):
     to = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='messages')
     subject = models.CharField(max_length=200)
     message = models.TextField()
-    f_rom = models.ForeignKey(Client, on_delete=models.CASCADE)
+    f_rom = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='queries')
     sent = models.DateTimeField(auto_now_add=True)
     response = models.TextField()
 
     def __str__(self):
-        return f"to {self.to} from {self.f_rom.name}"
+        return f"to {self.to} from {self.f_rom}"
 
 class Reply(models.Model):
     message = models.ForeignKey(Message, on_delete=models.CASCADE, related_name='replies')
-    reponse = models.TextField()
+    response = models.TextField()
     sender = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
 
 class Review(models.Model):
     body = models.CharField(max_length=500)

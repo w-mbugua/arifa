@@ -13,6 +13,7 @@ from .views import(
     user_follow,
     review,
     show_followers,
+    client_messages
     )
 
 urlpatterns = [ 
@@ -25,7 +26,8 @@ urlpatterns = [
     path('ask_expert/<slug:slug>/', ask_expert, name='ask'),
     path('<slug:slug>/messages/', retrieve_messages, name='dms'),
     path('message/<int:msg_id>/', MessageView, name='message'),
-    path('<int:msg_id>/send_reply/', reply_msg, name='reply_msg'),
+    path('message/<int:msg_id>/reply', MessageView, name='reply_to_message'),
+    # path('<int:msg_id>/send_reply/', reply_msg, name='reply_msg'),
     path('<slug:slug>/followers/', show_followers, name="show_followers"),
     
 ]

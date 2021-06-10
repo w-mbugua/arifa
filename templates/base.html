@@ -43,6 +43,11 @@
                     <a class="nav-link" href="{% url 'create_profile' %}">Create Your profile</a>
                   </li>
                    {% endif %}
+                   {% if user.is_investor %}
+                   <li>
+                     <a class="nav-link" href="{% url 'my_messages' %}">Messages</a>
+                   </li>
+                    {% endif %}
                      <li class="nav-item">
                        <a class="nav-link" href="{% url 'logout'%}">Logout</a>
                      </li>
