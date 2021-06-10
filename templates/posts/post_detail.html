@@ -23,8 +23,8 @@
                             {{ post.body }}
                      
                                 <div class="post-info">
-                                    <span class="count">
-                                        {{post.get_likes}} like{{post.get_likes|pluralize }}                                      
+                                    <span class="total">
+                                        <span class="count"> {{post.get_likes}}</span>like{{post.get_likes|pluralize }}                                 
                                     </span>
                                     <a href="#" data-id="{{post.id}}" data-action="{% if user in post.likes.all %}un{% endif %}like" class="likebutton">
                                         {% if user not in post.likes.all %}

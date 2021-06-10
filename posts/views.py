@@ -48,15 +48,15 @@ def create_post(request):
 def post_like(request):
     post_id = request.POST.get('id')
     action = request.POST.get('action')
-    
-    if post_id and action:
-        post = Post.objects.get(id=post_id)
+    post = Post.objects.get(id=post_id)
 
+    if post_id and action:
+       
         if action == 'like':
             post.likes.add(request.user)
         else:
             post.likes.remove(request.user)
-            return JsonResponse({"status": "ok"})
+        return JsonResponse({"status": "ok"})
 
     else:
         return JsonResponse({"status": "error"})

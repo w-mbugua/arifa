@@ -43,8 +43,9 @@ $(document).ready(function(){
 
           $('a.likebutton').text(previous_action == 'like' ? 'Unlike' : 'Like');
 
-          var prev_likes = parseInt($('span.count.total').text());
-          $('span.count.total').text(previous_action == 'like' ? prev_likes + 1 : prev_likes - 1);
+          var prev_likes = parseInt($('span.count').text());
+          console.log("LIKES",prev_likes)
+          $('span.count').text(previous_action == 'like' ? prev_likes + 1 : prev_likes - 1);
 
         }
       }
