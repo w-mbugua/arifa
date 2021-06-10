@@ -97,8 +97,14 @@ def retrieve_messages(request, slug):
     return render(request, 'profiles/dms.html', {"messages": messages, "profile": profile})
 
 def MessageView(request, msg_id):
+    form = ReplyForm()
     message = Message.objects.get(pk=msg_id)
-    return render(request, 'messages/message_details.html', {"message": message})
+    if request.method == 'POST':
+        form = ReplyForm(request.POST)
+        if form.is_valid():
+            reply = form.save(commit=False)
+            
+    return render(request, 'messages/message_details.html', {"message": message, "form": form})
 
 # for both?
 def reply_msg(request, msg_id):

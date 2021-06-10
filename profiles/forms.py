@@ -19,10 +19,15 @@ class Registration2Form(forms.ModelForm):
 class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
-        exclude = ('to', 'f_rom')
+        exclude = ('to', 'f_rom', 'response',)
 
-class ReplyForm(forms.Form):
-    response = forms.CharField(widget=forms.Textarea())
+class ReplyForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ('response',)
+        widgets = {
+            'response': forms.Textarea(attrs={'rows': '2'})
+        }
 
 class ReviewForm(forms.ModelForm):
     class Meta:

@@ -10,6 +10,8 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from users.decorators import expert_required
+
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
@@ -27,6 +29,7 @@ class PostDetailView(LoginRequiredMixin, DetailView):
 
 
 @login_required
+@expert_required
 def create_post(request):
     form = PostCreateForm()
     if request.method == 'POST':

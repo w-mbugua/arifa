@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load comment_tags %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     <div class="container mt-3">
@@ -21,7 +22,12 @@
                       </blockquote>
                     </div>
                   </div>
-                 
+                 <div class="ml-4 reply-box">
+                    <form action="" method="POST">
+                        {{form|crispy}}
+                        <input type="submit" value='reply'>
+                    </form>
+                 </div>
             </div>
         </div>
     </div>

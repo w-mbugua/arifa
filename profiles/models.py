@@ -67,9 +67,15 @@ class Message(models.Model):
     message = models.TextField()
     f_rom = models.ForeignKey(Client, on_delete=models.CASCADE)
     sent = models.DateTimeField(auto_now_add=True)
+    response = models.TextField()
 
     def __str__(self):
         return f"to {self.to} from {self.f_rom.name}"
+
+class Reply(models.Model):
+    message = models.ForeignKey(Message, on_delete=models.CASCADE, related_name='replies')
+    reponse = models.TextField()
+    sender = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
 class Review(models.Model):
     body = models.CharField(max_length=500)
