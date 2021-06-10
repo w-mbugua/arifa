@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load cloudinary %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-9">
+                
+                <div class="experts-box">
+                    {% if results %}
+                    <h1>Search Results for "{{term}}"</h1>
+                     <hr>
+                    {% for expert in results %}
+                        <div class="row">
+                            <div class="col-md-2">
+                                {% cloudinary expert.photo class="rounded-circle post-avi" %}
+                            </div>
+                            <div class="col-md-3">
+                                {{expert.user.username|title}}
+                                <br>
+                                <button style="margin-top: 1rem;" class="btn btn-primary">
+                                    <a style="text-decoration: none; color: white;" href="{% url 'profile' expert.user.username %}">See Profile</a>
+                                </button>
+                            
+                            </div>
+                            <div class="col-md-2">
+                                   
+                            </div>
+                        </div>
+                                              
+                    {% endfor %}
+                    {% else %}
+                    <h3>There are no results for "{{term}}"</h3>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

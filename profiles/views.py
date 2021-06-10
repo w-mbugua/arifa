@@ -174,5 +174,10 @@ def client_messages(request):
     messages = Message.objects.filter(f_rom=user).all()
     return render(request, 'messages/client_messages.html', {"messages": messages})
 
+def search_profile(request):
+    search_term = request.GET.get('searchword')
+    results = Profile.search_profile(search_term)
+    return render(request, 'profiles/search.html', {"results": results, "term": search_term})
+
 
 

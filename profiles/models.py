@@ -38,6 +38,13 @@ class Profile(models.Model):
     
     def get_messages(self):
         return self.messages.all()
+    
+    @classmethod
+    def search_profile(cls, p_name):
+        profile = cls.objects.filter(user__username__icontains = p_name)
+        return profile
+
+
 
 
 
