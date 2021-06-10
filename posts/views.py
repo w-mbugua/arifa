@@ -69,8 +69,9 @@ def post_like(request):
 
 def interesing_news(request, interest):
     user = Investor.objects.get(user=request.user)
-    interest = user.interests.all()
-    print(interest)
+    interests = user.interests.all()
+    for item in interests:
+        print(item)
     news = get_news(interest)
-    return render(request, 'posts/blog.html', {"news": news})
+    return render(request, 'posts/blog.html', {"news": news, "interest": interest})
 

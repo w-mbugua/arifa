@@ -41,9 +41,7 @@ def process_results(news_list):
         pub_time = news_item.get('publishedAt')
 
         if image_url:
-           
-            publish_time = publish_time[:10]
-
+            pub_time = pub_time[:10]
             news_object = BlogPost(title=title, author=author, body=body, link=link, image_url=image_url, pub_time=pub_time)
             news_results.append(news_object)
     return news_results
