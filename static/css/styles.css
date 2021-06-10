@@ -174,3 +174,7 @@ footer{
 .reply-box {
   display: none;
 }
+.news-img {
+  object-fit: contain;
+  width: 100%;
+}

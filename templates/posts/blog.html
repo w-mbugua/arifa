@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3 class="text-center"><strong>{{interest}} News</strong></h3>
+    <br>
+    {% for item in news %}
+    <div class="card mb-3" style="min-width: 540px; font-family: 'Poppins', sans-serif;">
+        <div class="row g-0">
+          <div class="col-md-4">
+              <img src="{{ item.image_url }}" alt="{{ item.title }} poster" class="news-img img-responsive">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <p class="card-title"><a style="text-decoration: none;" href="{{ item.link }}">{{ item.title }}</a></p>
+                <p>By {{ item.author }}</p>
+              <p class="card-text" style="line-height: 150%; font-size: .8rem;">{{ item.body }}</p>
+              <p class="card-text"><small class="text-muted">Published: {{ item.pub_time }}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+      <hr>
+    {% endfor %}
+{% endblock %}

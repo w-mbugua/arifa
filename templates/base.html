@@ -47,6 +47,12 @@
                    <li>
                      <a class="nav-link" href="{% url 'my_messages' %}">Messages</a>
                    </li>
+                   <li>
+                     <a href="">Interesting news</a>
+                     {% for item in user.investor.interests.all %}
+                        <p><a href="{% url 'interesting_news' item %}"> {{item}}</a></p>
+                     {% endfor %}
+                   </li>
                     {% endif %}
                      <li class="nav-item">
                        <a class="nav-link" href="{% url 'logout'%}">Logout</a>
