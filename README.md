@@ -1,4 +1,4 @@
-# ![screenshot](https://github.com/JoyMbugua/arifa/blob/master/static/images/screenshot.png)
+# ![screenshot](https://github.com/JoyMbugua/arifa/blob/master/static/images/Screenshot.png)
 
 # Arifa
 
