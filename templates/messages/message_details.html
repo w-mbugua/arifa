@@ -35,7 +35,7 @@
                     <div class="row">
                       {% if reply.sender.is_expert %}
                       <div class="col-md-4">
-                          {% cloudinary reply.sender.profile.photo class="rounded-circle post-avi" %}
+                          {% cloudinary reply.sender.profile.photo class="rounded-circle dm-avi" %}
                       </div>
                       <div class="reply-info col-md-6">
                          <p class="text-muted"><a href="{% url 'profile' reply.sender.profile.slug %}">{{reply.sender.username }}</a> &middot; {{reply.created|timesince}} ago</p>
