@@ -37,6 +37,13 @@ class Profile(models.Model):
     def get_messages(self):
         return self.messages.all()
     
+    def get_clients(self):
+        clients = self.clients.all()
+        names = []
+        for client in clients:
+            names.append(client.name)
+        return names
+    
     @classmethod
     def search_profile(cls, p_name):
         profile = cls.objects.filter(user__username__icontains = p_name)

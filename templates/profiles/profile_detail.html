@@ -71,12 +71,12 @@
             <div class="col-md-3">
                 <h3>Reviews</h3>
                           
-                {% for client in profile.clients.all %}
+ 
                              
-                  {% if user.username == client.name %}
+                  {% if user.username in profile.get_clients %}
                     <a href="{% url 'review_expert' profile.slug %}">Leave a review</a>          
                   {% endif %}               
-                {% endfor %}
+     
                 <hr>
 
                 {% for review in profile.reviews.all %}
