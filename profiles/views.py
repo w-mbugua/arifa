@@ -75,7 +75,7 @@ def ask_expert(request, slug):
         if form.is_valid():
             client = Client(name=request.user.username, email=request.user.email, client_of=profile)
             client.save()
-            f_rom = client
+            f_rom = request.user
             to = profile
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
