@@ -57,11 +57,13 @@ body{
 nav {
     background-color: #38618C;
     }
-li a{
-  color: #030027;
+nav li a{
+  color: white;
   text-decoration: none;
 }
-
+nav .logo{
+  color: white;
+}
 header a{
   color: white;
 }
@@ -210,6 +212,8 @@ main{
 }
 .leading-text{
   font-size: 2.2rem;
+  color: #D58936;
+  font-weight: bold;
 }
 .subleading-text{
   font-size: 1.5rem;
@@ -219,4 +223,18 @@ main{
 }
 .mid-par {
   margin-left: 10rem;
+}
+.one{
+  border: 1px solid whitesmoke;
+  margin: 1rem;
+}
+.one img{
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+.mid-par h2{
+  color: #D58936;
+  font-weight: bold;
 }
