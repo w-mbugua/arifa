@@ -36,7 +36,7 @@
                               {% with total_followers=profile.followers.count %}
                               <a href="{% url 'show_followers' profile.slug%}">
                                 <span class="count">
-                                  <span class="total">{{ total_followers }}</span> follower{{ total_followers|pluralize }}
+                                  <span class="total">{{ total_followers }}</span>following{{ total_followers|pluralize }}
                                </span>
                               </a>
                               <a href="#" data-id="{{ profile.id }}" data-action="{% if user in profile.followers.all %}un{% endif %}follow" class="followbutton">

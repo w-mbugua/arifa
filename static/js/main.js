@@ -27,7 +27,9 @@ $(document).ready(function(){
           var prev_followers = parseInt($('span.total').text());
           console.log("followers",prev_followers)
 
+
           $('span.total').text(prev_action == 'follow' ? prev_followers + 1 : prev_followers - 1);
+         
         }
       }
       )

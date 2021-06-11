@@ -12,6 +12,7 @@ from django.http import HttpResponse
 
 from posts.forms import PostCreateForm
 from posts.models import Post
+from profiles.models import Profile
 
 
 
@@ -59,9 +60,19 @@ class ExpertSignUpView(CreateView):
 def home(request):
     form = PostCreateForm()
     user = request.user 
+    profiles = Profile.objects.all()
+    p = ''
+    val = False
+    if user.is_expert:
+        for profile in profiles:
+            if profile.user == user:
+                val = True
+                p = profile
+    print(val)
+    print(p)
     posts = Post.objects.all().order_by('-pk')
-       
-    context = {"form": form, "posts": posts}
+
+    context = {"form": form, "posts": posts, "profiles": profiles, "val": val, "p": p}
     return render(request, 'home.html', context)
 
 def landing_page(request):
