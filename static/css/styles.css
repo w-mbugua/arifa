@@ -57,7 +57,7 @@ body{
 nav {
     background-color: #38618C;
     }
-nav li a{
+header nav li a{
   color: white;
   text-decoration: none;
 }
